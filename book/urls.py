@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from booklib import views
+from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'', views.index, name='index'),
+    path('', include('booklib.urls')),
 ]
