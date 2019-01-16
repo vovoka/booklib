@@ -1,9 +1,15 @@
 <!DOCTYPE HTML>
+{% load staticfiles %}
+
 <html>
     <head>
         <title> Title HTML </title>
+
         <body>
             <h1>Body of the html.</h1>
-            <p>Inserted text:</p>
-            {{ insert_me }}
+            here is a text:<br>
+            {{ insert_me }}<br>
+            Here is a picture<br>
+            <img src= '{% static 'img/py.png' %}', alt= 'picture here'>
         </body>
+</html>
