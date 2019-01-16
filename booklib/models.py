@@ -14,8 +14,8 @@ class Genre(models.Model):
     def __str__(self):
         """
         String for representing the Model object (in Admin site etc.)
-        return unicode(self.name, 'utf-8')
         """
+        return self.name
 
 class Author(models.Model):
     """
