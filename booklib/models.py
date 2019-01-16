@@ -28,7 +28,7 @@ class Author(models.Model):
         """
         String for representing the Model object.
         """
-        return unicode(self.name, 'utf-8')
+        return self.name
 
 
 class Book(models.Model):
