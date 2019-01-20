@@ -9,7 +9,8 @@ class Genre(models.Model):
     Model representing a book genre (e.g. Science Fiction, Non Fiction).
     """
     name = models.CharField(max_length=200, help_text="Enter a book genre (e.g. Science Fiction, French Poetry etc.)")
-    
+
+
 
     def __str__(self):
         """
@@ -22,8 +23,7 @@ class Author(models.Model):
     Model representing an author.
     """
     name = models.CharField(max_length=255)
-    # books = models.ManyToManyField(Book)
-  
+
     def __str__(self):
         """
         String for representing the Model object.
@@ -36,13 +36,28 @@ class Book(models.Model):
     Model representing a book (but not a specific instance of a book).
     """
     title = models.CharField(max_length=255)
-    author = models.ManyToManyField('Author')
+    author = models.ManyToManyField(Author, help_text="Select the book autor(s)")
     # Many to Many used because a book can have several authors.
     summary = models.TextField(max_length=1000, help_text="Enter a brief description of the book")
     isbn = models.CharField('ISBN',max_length=13, help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
     # ManyToManyField used because genre can contain many books. Books can cover many genres.
-    
+
+    def display_author(self):
+        """
+        Creates a string for the Genre. This is required to display genre in Admin.
+        """
+        return ', '.join([ author.name for author in self.author.all()[:3] ])
+    display_author.short_description = 'Author'
+
+    def display_genre(self):
+        """
+        Creates a string for the Genre. This is required to display genre in Admin.
+        """
+        return ', '.join([ genre.name for genre in self.genre.all()[:4] ])
+    display_genre.short_description = 'Genre'
+
+
     def __str__(self):
         """
         String for representing the Model object.
