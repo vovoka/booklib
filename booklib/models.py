@@ -45,14 +45,14 @@ class Book(models.Model):
 
     def display_author(self):
         """
-        Creates a string for the Genre. This is required to display genre in Admin.
+        Creates a string for the Author(s). Required to display genre in Admin.
         """
         return ', '.join([ author.name for author in self.author.all()[:3] ])
     display_author.short_description = 'Author'
 
     def display_genre(self):
         """
-        Creates a string for the Genre. This is required to display genre in Admin.
+        Creates a string for the Genre(s). Required to display genre in Admin.
         """
         return ', '.join([ genre.name for genre in self.genre.all()[:4] ])
     display_genre.short_description = 'Genre'

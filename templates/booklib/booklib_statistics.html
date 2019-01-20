@@ -1,0 +1,17 @@
+{% extends "booklib/base_generic.html" %}
+
+{% block content %}
+<h1>Book Library DB Statistics</h1>
+
+  <p>Just text</p>
+
+<h2>Content is dynamic</h2>
+
+  <p>The library DB has the following record counts:</p>
+  <ul>
+    <li><strong>Books:</strong> {{ num_books }}</li>
+    <li><strong>Copies:</strong> {{ num_instances }}</li>
+    <li><strong>Authors:</strong> {{ num_authors }}</li>
+  </ul>
+
+{% endblock %}
