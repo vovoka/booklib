@@ -3,15 +3,23 @@
 {% block content %}
 <h1>Book Library DB Statistics</h1>
 
-  <p>Just text</p>
-
-<h2>Content is dynamic</h2>
-
   <p>The library DB has the following record counts:</p>
-  <ul>
-    <li><strong>Books:</strong> {{ num_books }}</li>
-    <li><strong>Copies:</strong> {{ num_instances }}</li>
-    <li><strong>Authors:</strong> {{ num_authors }}</li>
-  </ul>
 
+        <table>
+            <thead>
+                <th> Books </th>
+                <th> Book instances </th>
+                <th> Authors </th>
+                <th> Genres </th>
+            </thead>
+            <tr>
+                <td> {{ num_books }} </td>
+                <td> {{num_instances}} </td>
+                <td> {{num_authors}} </td>
+                <td> {{num_genres}} </td>
+            </tr>
+        </table>
+        
 {% endblock %}
+
+

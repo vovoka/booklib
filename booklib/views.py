@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views import generic
 
 from booklib.models import Genre, Author, Book, BookInstance
 
@@ -29,9 +30,23 @@ def booklib_statistics(request):
     num_books=Book.objects.all().count()
     num_instances=BookInstance.objects.all().count()
     num_authors=Author.objects.count()
+    num_genres=Genre.objects.count()
     
     return render(
         request,
         'booklib/booklib_statistics.html',
-        context={'num_books':num_books,'num_instances':num_instances,'num_authors':num_authors},
+        context={
+            'num_books':num_books,
+            'num_instances':num_instances,
+            'num_authors':num_authors,
+            'num_genres':num_genres
+        },
     )
+
+class BookListView(generic.ListView):
+    """Generic class-based view for a list of books."""
+    model = Book
+    
+class BookDetailView(generic.DetailView):
+    """Generic class-based detail view for a book."""
+    model = Book

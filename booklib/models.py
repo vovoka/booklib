@@ -1,8 +1,12 @@
 from django.db import models
 import uuid # Required for unique book instances
-from django.urls import reverse #Used to generate URLs by reversing the URL patterns
+
+from django.urls import reverse  # To generate URLS by reversing URL patterns
+
 
 # Create your models here.
+
+
 
 class Genre(models.Model):
     """
@@ -24,12 +28,6 @@ class Author(models.Model):
     """
     name = models.CharField(max_length=255)
 
-    def get_absolute_url(self):
-        """
-        Returns the url to access a particular author instance.
-        """
-        return reverse('author-detail', args=[str(self.id)])
-
     def __str__(self):
         """
         String for representing the Model object.
@@ -48,12 +46,6 @@ class Book(models.Model):
     isbn = models.CharField('ISBN',max_length=13, help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
     # ManyToManyField used because genre can contain many books. Books can cover many genres.
-
-    def get_absolute_url(self):
-        """
-        Returns the url to access a particular book instance.
-        """
-        return reverse('book-detail', args=[str(self.id)])
 
     def display_author(self):
         """
@@ -77,11 +69,11 @@ class Book(models.Model):
         return self.title
     
     
-    # def get_absolute_url(self):
-    #     """
-    #     Returns the url to access a particular book instance.
-    #     """
-    #     return reverse('book-detail', args=[str(self.id)])
+    def get_absolute_url(self):
+        """
+        Returns the url to access a particular book instance.
+        """
+        return reverse('book-detail', args=[str(self.id)])
 
 class BookInstance(models.Model):
     """
